@@ -8,9 +8,9 @@ Una aplicación nativa para Android desarrollada en **Java** que consume el serv
 
 Para que puedas apreciar el diseño y la interfaz de usuario de la aplicación, aquí tienes las capturas de las diferentes pantallas:
 
-| 🏁 Vista Inicial (Menú Principal) | 📱 Listado de Apps | 🏷️ Categorías de Apps |
-|:---:|:---:|:---:|
-| ![Vista Inicial](docs/imagenes/vista%20inicial.png) | ![Lista de Apps](docs/imagenes/Lista%20de%20Apps.png) | ![Categorías de apps](docs/imagenes/Categorias%20de%20apps.png) |
+| ⏳ Splash Screen (Bienvenida) | 🏁 Vista Inicial (Menú) | 📱 Listado de Apps | 🏷️ Categorías de Apps |
+|:---:|:---:|:---:|:---:|
+| ![Splash Screen](docs/imagenes/splash_screen.png) | ![Vista Inicial](docs/imagenes/vista%20inicial.png) | ![Lista de Apps](docs/imagenes/Lista%20de%20Apps.png) | ![Categorías de apps](docs/imagenes/Categorias%20de%20apps.png) |
 
 ---
 
