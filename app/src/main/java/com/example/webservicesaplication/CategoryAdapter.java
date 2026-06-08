@@ -1,11 +1,14 @@
 package com.example.webservicesaplication;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,16 +28,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryAdapter extends ArrayAdapter<AppModel> {
+    private static final String TAG = "CategoryAdapter";
     private String url = "https://itunes.apple.com/us/rss/topfreeapplications/limit=20/json";
     private RequestQueue requestQueue;
     private List<AppModel> appList;
     private Context context;
+    private ProgressBar progressBar;
+    private TextView textError;
 
-    public CategoryAdapter(@NonNull Context context) {
+    public CategoryAdapter(@NonNull Context context, ProgressBar progressBar, TextView textError) {
         super(context, R.layout.adapter_category, new ArrayList<>());
         this.context = context;
         this.appList = new ArrayList<>();
         this.requestQueue = Volley.newRequestQueue(context);
+        this.progressBar = progressBar;
+        this.textError = textError;
+
+        // Mostrar ProgressBar mientras se cargan los datos
+        if (progressBar != null) {
+            progressBar.setVisibility(View.VISIBLE);
+        }
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -42,11 +55,23 @@ public class CategoryAdapter extends ArrayAdapter<AppModel> {
                     public void onResponse(JSONObject response) {
                         parseJSON(response);
                         notifyDataSetChanged();
+                        // Ocultar ProgressBar al cargar exitosamente
+                        if (progressBar != null) {
+                            progressBar.setVisibility(View.GONE);
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // Handle error
+                // Manejo de errores: mostrar mensaje al usuario
+                Log.e(TAG, "Error al cargar datos: " + error.getMessage());
+                Toast.makeText(context, "Error al cargar las categorías. Verifique su conexión.", Toast.LENGTH_LONG).show();
+                if (progressBar != null) {
+                    progressBar.setVisibility(View.GONE);
+                }
+                if (textError != null) {
+                    textError.setVisibility(View.VISIBLE);
+                }
             }
         });
         requestQueue.add(request);
@@ -62,7 +87,12 @@ public class CategoryAdapter extends ArrayAdapter<AppModel> {
 
                 String name = obj.getJSONObject("im:name").getString("label");
                 String summary = obj.getJSONObject("summary").getString("label");
-                String rights = obj.getJSONObject("rights").getString("label");
+
+                // Manejo seguro del campo rights (puede no existir en algunas entries)
+                String rights = "";
+                if (obj.has("rights")) {
+                    rights = obj.getJSONObject("rights").getString("label");
+                }
 
                 JSONArray images = obj.getJSONArray("im:image");
                 String image = images.getJSONObject(2).getString("label");
@@ -74,29 +104,43 @@ public class CategoryAdapter extends ArrayAdapter<AppModel> {
                 add(appModel);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.e(TAG, "Error parseando JSON: " + e.getMessage());
+            Toast.makeText(context, "Error al procesar los datos.", Toast.LENGTH_SHORT).show();
         }
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        // Patrón ViewHolder para mejorar rendimiento del scroll
+        ViewHolder holder;
+
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.adapter_category, parent, false);
+            holder = new ViewHolder();
+            holder.textCategory = convertView.findViewById(R.id.textCategory);
+            holder.textName = convertView.findViewById(R.id.textName);
+            holder.textSummary = convertView.findViewById(R.id.textSummary);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
         AppModel currentItem = getItem(position);
 
-        TextView textCategory = convertView.findViewById(R.id.textCategory);
-        TextView textName = convertView.findViewById(R.id.textName);
-        TextView textSummary = convertView.findViewById(R.id.textSummary);
-
         if (currentItem != null) {
-            textCategory.setText(currentItem.getCategory());
-            textName.setText(currentItem.getName());
-            textSummary.setText(currentItem.getSummary());
+            holder.textCategory.setText(currentItem.getCategory());
+            holder.textName.setText(currentItem.getName());
+            holder.textSummary.setText(currentItem.getSummary());
         }
 
         return convertView;
+    }
+
+    // ViewHolder para mejorar rendimiento del ListView
+    private static class ViewHolder {
+        TextView textCategory;
+        TextView textName;
+        TextView textSummary;
     }
 }

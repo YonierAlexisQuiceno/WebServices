@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">WebServices Aplication</string>
+    <string name="app_name">WebServices App</string>
+    <string name="splash_title">iTunes Top Apps</string>
+    <string name="splash_subtitle">Consumo de Web Services</string>
+    <string name="splash_author">IU Digital - Programación Móvil</string>
+    <string name="loading">Cargando aplicaciones…</string>
+    <string name="error_loading">Error al cargar los datos. Verifique su conexión a Internet.</string>
+    <string name="menu_apps">Listado de Apps</string>
+    <string name="menu_categories">Categorías</string>
 </resources>

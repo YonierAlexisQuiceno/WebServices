@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     private ListView lst_aplicacion;
-    private String[] titulos_menu = {"Listado de Apps", "categorias"};
+    private String[] titulos_menu = {"Listado de Apps", "Categorías"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

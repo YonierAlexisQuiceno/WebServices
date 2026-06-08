@@ -2,13 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:padding="20dp"
+    android:background="?android:attr/selectableItemBackground">
 
     <ImageView
         android:id="@+id/imagen_menu"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="Menu Icon" />
 
     <TextView
         android:id="@+id/test_titulo_menu"
@@ -16,8 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imagen_menu"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="12dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/textPrimary" />
 
 </RelativeLayout>

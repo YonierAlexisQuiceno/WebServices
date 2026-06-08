@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#1565C0</color>
+    <color name="colorPrimaryDark">#0D47A1</color>
+    <color name="colorAccent">#FF6F00</color>
+    <color name="colorSplashBg">#0D47A1</color>
+    <color name="colorMenuBg">#F5F5F5</color>
+    <color name="colorCategoryHeader">#1565C0</color>
+    <color name="colorDivider">#E0E0E0</color>
+    <color name="textPrimary">#212121</color>
+    <color name="textSecondary">#757575</color>
 </resources>

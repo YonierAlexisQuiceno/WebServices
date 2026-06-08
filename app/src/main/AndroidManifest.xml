@@ -13,16 +13,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WebServicesAplication">
+
+        <!-- Splash Screen: nueva actividad de lanzamiento -->
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.WebServicesAplication.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DataActivity" />
+
+        <!-- Menú principal -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <!-- Pantalla de datos (Apps / Categorías) -->
+        <activity
+            android:name=".DataActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

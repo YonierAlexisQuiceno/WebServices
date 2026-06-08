@@ -3,41 +3,63 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="12dp"
+    android:background="?android:attr/selectableItemBackground">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Categoria"
-        android:textStyle="bold" />
+        android:text="Categoría"
+        android:textStyle="bold"
+        android:textSize="11sp"
+        android:textColor="@color/textSecondary"
+        android:textAllCaps="true" />
 
     <TextView
         android:id="@+id/textCategory"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:layout_marginTop="2dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="App"
+        android:text="Aplicación"
         android:textStyle="bold"
-        android:layout_marginTop="4dp" />
+        android:textSize="11sp"
+        android:textColor="@color/textSecondary"
+        android:textAllCaps="true"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:id="@+id/textName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/textPrimary"
+        android:layout_marginTop="2dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Resumen"
         android:textStyle="bold"
-        android:layout_marginTop="4dp" />
+        android:textSize="11sp"
+        android:textColor="@color/textSecondary"
+        android:textAllCaps="true"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:id="@+id/textSummary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/textSecondary"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:layout_marginTop="2dp" />
 
 </LinearLayout>
