@@ -1,39 +1,44 @@
 package com.example.webservicesaplication;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ListView lst_aplicacion;
-    private String[] titulos_menu = {"Listado de Apps", "Categorías"};
+    ListView listView;
+    ArrayAdapter arrayadapter;
+    private ProgressBar progressBar;
+    private TextView textError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        lst_aplicacion = findViewById(R.id.lst_aplicacion);
+        listView = findViewById(R.id.list_view_data);
+        progressBar = findViewById(R.id.progressBar);
+        textError = findViewById(R.id.textError);
 
-        Menu_Adapter adapter = new Menu_Adapter(this, titulos_menu);
-        lst_aplicacion.setAdapter(adapter);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String extra = extras.getString("extra");
 
-        lst_aplicacion.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, DataActivity.class);
-                if (position == 0) {
-                    intent.putExtra("extra", "app");
-                } else {
-                    intent.putExtra("extra", "category");
-                }
-                startActivity(intent);
+            if ("app".equals(extra)) {
+                setTitle("Listado de Apps");
+                AppAdapter appAdapter = new AppAdapter(this, progressBar, textError);
+                arrayadapter = appAdapter;
+                listView.setAdapter(arrayadapter);
+            } else {
+                setTitle("Categorías");
+                CategoryAdapter categoryAdapter = new CategoryAdapter(this, progressBar, textError);
+                arrayadapter = categoryAdapter;
+                listView.setAdapter(arrayadapter);
             }
-        });
+        }
     }
 }

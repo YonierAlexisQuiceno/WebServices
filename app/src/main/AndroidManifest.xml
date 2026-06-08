@@ -27,12 +27,12 @@
 
         <!-- Menú principal -->
         <activity
-            android:name=".MainActivity"
+            android:name=".MenuActivity"
             android:exported="false" />
 
         <!-- Pantalla de datos (Apps / Categorías) -->
         <activity
-            android:name=".DataActivity"
+            android:name=".MainActivity"
             android:exported="false" />
 
     </application>

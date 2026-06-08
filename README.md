@@ -41,8 +41,8 @@ Para que puedas apreciar el diseño y la interfaz de usuario de la aplicación, 
 
 Las clases clave de la aplicación están organizadas de la siguiente manera dentro del paquete `com.example.webservicesaplication`:
 
-*   **`MainActivity.java`**: Punto de entrada de la aplicación. Muestra el menú principal con las opciones "Listado de Apps" y "Categorías" utilizando un `ListView`.
-*   **`DataActivity.java`**: Actividad receptora que procesa la selección del usuario desde el menú inicial y adjunta el adaptador correspondiente (`AppAdapter` o `CategoryAdapter`).
+*   **`MenuActivity.java`**: Actividad que maneja el menú principal de la aplicación con las opciones "Listado de Apps" y "Categorías" utilizando un `ListView`.
+*   **`MainActivity.java`**: Actividad principal receptora que procesa la selección del usuario desde el menú inicial y le asocia el adaptador correspondiente (`AppAdapter` o `CategoryAdapter`).
 *   **`AppModel.java`**: Modelo de datos estructurado que encapsula la información de cada aplicación (nombre, url de imagen, resumen, derechos y categoría).
 *   **`Menu_Adapter.java`**: Adaptador para el menú de opciones inicial, asignando iconos según la opción seleccionada de forma dinámica.
 *   **`AppAdapter.java`**: Adaptador personalizado que realiza la llamada al Web Service, parsea el objeto JSON de iTunes, administra la lista y descarga los iconos usando `ImageRequest` de Volley.
